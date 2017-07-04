@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -19,13 +21,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        selectItem("Inicio");
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Adding orders not available yet", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
+                selectItem("Menu");
+
             }
         });
     }
@@ -52,4 +56,27 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private void selectItem(String FragmentName) {
+
+        // Reemplazar el contenido del layout principal por un fragmento
+        FragmentManager fragmentManager;
+        Fragment fragment;
+        fragmentManager = getSupportFragmentManager();
+        switch(FragmentName)
+        {
+            case "Inicio":
+                fragment=new InicioFragment();
+                fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+                break;
+            case "Menu":
+                fragment=new FragmentoCategorias();
+                fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+                break;
+        }
+
+        // Se actualiza el item seleccionado y el título, después de cerrar el drawer
+
+    }
+
 }
