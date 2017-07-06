@@ -53,7 +53,7 @@ public class FragmentoCategoria extends Fragment {
                 adaptador = new AdaptadorCategorias(Comida.BEBIDAS);
                 break;
             case 2:
-                adaptador = new AdaptadorCategorias(Comida.POSTRES);
+                adaptador = new AdaptadorCategorias(Comida.COMIDAS_POPULARES);
                 break;
         }
 

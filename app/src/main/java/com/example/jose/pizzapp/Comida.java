@@ -23,16 +23,16 @@ public class Comida {
     public static final List<Comida> PLATILLOS = new ArrayList<>();
 
     static {
-        COMIDAS_POPULARES.add(new Comida(5, "Camarones Tismados", R.drawable.peperoni));
-        COMIDAS_POPULARES.add(new Comida(3.2f, "Rosca Herbárea", R.drawable.peperoni));
-        COMIDAS_POPULARES.add(new Comida(12f, "Sushi Extremo", R.drawable.peperoni));
-        COMIDAS_POPULARES.add(new Comida(9, "Sandwich Deli", R.drawable.peperoni));
+        COMIDAS_POPULARES.add(new Comida(5, "Camarones Tismados", R.drawable.pizzaicon2));
+        COMIDAS_POPULARES.add(new Comida(3.2f, "Rosca Herbárea", R.drawable.pizzaicon2));
+        COMIDAS_POPULARES.add(new Comida(12f, "Sushi Extremo", R.drawable.pizzaicon2));
+        COMIDAS_POPULARES.add(new Comida(9, "Sandwich Deli", R.drawable.pizzaicon2));
 
-        PLATILLOS.add(new Comida(5, "Camarones Tismados", R.drawable.peperoni));
-        PLATILLOS.add(new Comida(3.2f, "Rosca Herbárea", R.drawable.peperoni));
-        PLATILLOS.add(new Comida(12f, "Sushi Extremo", R.drawable.peperoni));
-        PLATILLOS.add(new Comida(9, "Sandwich Deli", R.drawable.peperoni));
-        PLATILLOS.add(new Comida(34, "Lomo De Cerdo Austral", R.drawable.peperoni));
+        PLATILLOS.add(new Comida(5, "Camarones Tismados", R.drawable.pizzaicon2));
+        PLATILLOS.add(new Comida(3.2f, "Rosca Herbárea", R.drawable.pizzaicon2));
+        PLATILLOS.add(new Comida(12f, "Sushi Extremo", R.drawable.pizzaicon2));
+        PLATILLOS.add(new Comida(9, "Sandwich Deli", R.drawable.pizzaicon2));
+        PLATILLOS.add(new Comida(34, "Lomo De Cerdo Austral", R.drawable.pizzaicon2));
 
         BEBIDAS.add(new Comida(3, "Taza de Café",R.drawable.peperoni));
         BEBIDAS.add(new Comida(12, "Coctel Tronchatoro", R.drawable.peperoni));

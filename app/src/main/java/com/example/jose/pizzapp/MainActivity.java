@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -20,26 +21,41 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> Pedido;
     private static final String PEDIDO
             = "com.restaurantericoparico.FragmentoCategoriasTab.extra.PEDIDO";
-
+    private static Context context;
     public static String getPEDIDOKey() {
         return PEDIDO;
     }
-
+    public static Context getContext(){
+        return context;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        Pedido=new ArrayList<>();
+        context=getApplicationContext();
+        PedidoDatos Pedido = new PedidoDatos(context);
+        SQLiteDatabase bd = Pedido.getWritableDatabase();
+        Pedido.CreateIfNoExists(bd);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         selectItem("Inicio");
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        final Button PedidoButton = (Button) findViewById(R.id.PedidoButton);
+        PedidoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectItem("Pedido");
+            }
+        });
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Adding orders not available yet", Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null).show();
+                /*Snackbar.make(view, "Adding orders not available yet", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();*/
                 selectItem("Menu");
 
             }
@@ -91,6 +107,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case "Menu":
                 fragment=new FragmentoCategorias();
+                fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+                break;
+            case "Pedido":
+                fragment=new FragmentoPedidos();
                 fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
                 break;
         }

@@ -102,22 +102,19 @@ public class AdaptadorCategorias
             }
 
             public void aceptar() {
-                PedidoDatos Pedido = new PedidoDatos(context);
+                PedidoDatos Pedido = new PedidoDatos(MainActivity.getContext());
                 SQLiteDatabase bd = Pedido.getWritableDatabase();
                 String CantidadActual;
                 String query1 = "select * from " + "Pedido" + " WHERE nombre=?";
-                Pedido.CreateIfNoExists(bd);
                 Cursor c=bd.rawQuery(query1, new String[]{nombre});
                 //Cursor c = bd.rawQuery("select * from Pedido where nombre in ('" + nombre+"')",null );
                 if(c.moveToFirst()){
                     CantidadActual=c.getString(2);
                     ContentValues registro = new ContentValues();
                     registro.put("cantidad", Integer.parseInt(CantidadActual)+1);
-                    registro.put("subtotal",Float.toString(Float.parseFloat(CantidadActual)*Float.parseFloat(precio)));
+                    registro.put("subtotal",Float.toString((Float.parseFloat(CantidadActual)+1)*Float.parseFloat(precio)));
                     bd.update("Pedido", registro, "nombre= '" + nombre + "'", null);
 
-                    Toast.makeText(context, "Existe el Pedido "+ nombre+" cantidad: "+c.getString(2),
-                            Toast.LENGTH_SHORT).show();
 
                 }else{
                     ContentValues registro = new ContentValues();//Es para guardar los datos ingresados
@@ -127,8 +124,6 @@ public class AdaptadorCategorias
                     registro.put("subtotal", precio);
 
                     bd.insert("Pedido", null, registro);
-                    Toast.makeText(context, "No existe el Pedido "+ nombre+":(",
-                            Toast.LENGTH_SHORT).show();
                 }
 
                 bd.close();
