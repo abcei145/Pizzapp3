@@ -35,7 +35,7 @@ public class FragmentoPedidos extends Fragment {
         linearLayout = new LinearLayoutManager(getActivity());
         reciclador.setLayoutManager(linearLayout);
 
-        AdaptadorPedidos adaptador = new AdaptadorPedidos();
+        AdaptadorPedidos adaptador = new AdaptadorPedidos(getActivity().getSupportFragmentManager());
         reciclador.setAdapter(adaptador);
         reciclador.addItemDecoration(new DecoracionLineaDivisoria(getActivity()));
 

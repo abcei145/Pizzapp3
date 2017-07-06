@@ -54,4 +54,12 @@ public class PedidoDatos extends SQLiteOpenHelper{
         db.execSQL("drop table if exists Pedido");//elimina la anterior con drop
         db.execSQL("create table Pedido (identificacion integer primary key ,nombre text , nota integer)");
     }
+    public void delete(SQLiteDatabase bd) {
+        //bd.execSQL("delete from "+"Pedido"+" where nombre='"+nombre+"'");
+        bd.execSQL("drop table if exists Pedido");
+    }
+
+    public Cursor ObtainAllRows(SQLiteDatabase bd){
+        return bd.rawQuery("select * from Pedido",null);
+    }
 }

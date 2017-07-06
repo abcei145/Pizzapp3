@@ -1,5 +1,7 @@
 package com.example.jose.pizzapp;
 
+import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String PEDIDO
             = "com.restaurantericoparico.FragmentoCategoriasTab.extra.PEDIDO";
     private static Context context;
+
     public static String getPEDIDOKey() {
         return PEDIDO;
     }
@@ -31,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
         context=getApplicationContext();
         PedidoDatos Pedido = new PedidoDatos(context);
