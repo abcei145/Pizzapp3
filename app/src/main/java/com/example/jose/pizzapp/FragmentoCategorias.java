@@ -1,5 +1,6 @@
 package com.example.jose.pizzapp;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -8,14 +9,18 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 
 
 /**
@@ -26,7 +31,7 @@ public class FragmentoCategorias extends Fragment {
     private AppBarLayout appBarLayout;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-
+    private AdaptadorSecciones adapter = new AdaptadorSecciones(getFragmentManager());
     public FragmentoCategorias() {
     }
 
@@ -34,12 +39,13 @@ public class FragmentoCategorias extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragmento_paginado, container, false);
-
         if (savedInstanceState == null) {
             insertarTabs(container);
 
+
             // Setear adaptador al viewpager.
             viewPager = (ViewPager) view.findViewById(R.id.pager);
+
             poblarViewPager(viewPager);
 
             tabLayout.setupWithViewPager(viewPager);
@@ -58,6 +64,7 @@ public class FragmentoCategorias extends Fragment {
     }
 
     private void poblarViewPager(ViewPager viewPager) {
+
         AdaptadorSecciones adapter = new AdaptadorSecciones(getFragmentManager());
         adapter.addFragment(FragmentoCategoria.nuevaInstancia(0), getString(R.string.titulo_tab_platillos));
         adapter.addFragment(FragmentoCategoria.nuevaInstancia(1), getString(R.string.titulo_tab_bebidas));
@@ -90,6 +97,11 @@ public class FragmentoCategorias extends Fragment {
         private final List<Fragment> fragmentos = new ArrayList<>();
         private final List<String> titulosFragmentos = new ArrayList<>();
 
+        @Override
+        public void notifyDataSetChanged() {
+            super.notifyDataSetChanged();
+        }
+
         public AdaptadorSecciones(FragmentManager fm) {
             super(fm);
         }
@@ -108,6 +120,7 @@ public class FragmentoCategorias extends Fragment {
             fragmentos.add(fragment);
             titulosFragmentos.add(title);
         }
+
 
         @Override
         public CharSequence getPageTitle(int position) {

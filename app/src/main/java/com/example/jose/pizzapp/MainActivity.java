@@ -1,6 +1,7 @@
 package com.example.jose.pizzapp;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,12 +14,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
+    private ArrayList<String> Pedido;
+    private static final String PEDIDO
+            = "com.restaurantericoparico.FragmentoCategoriasTab.extra.PEDIDO";
+
+    public static String getPEDIDOKey() {
+        return PEDIDO;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+        Pedido=new ArrayList<>();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         selectItem("Inicio");
@@ -55,6 +67,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        PedidoDatos Pedido = new PedidoDatos(getApplicationContext());
+        SQLiteDatabase bd = Pedido.getWritableDatabase();
+        bd.execSQL("drop table if exists Pedido");
+        super.onDestroy();
     }
 
     private void selectItem(String FragmentName) {

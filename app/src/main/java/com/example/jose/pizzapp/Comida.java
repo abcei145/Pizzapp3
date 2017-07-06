@@ -32,7 +32,7 @@ public class Comida {
         PLATILLOS.add(new Comida(3.2f, "Rosca Herbárea", R.drawable.peperoni));
         PLATILLOS.add(new Comida(12f, "Sushi Extremo", R.drawable.peperoni));
         PLATILLOS.add(new Comida(9, "Sandwich Deli", R.drawable.peperoni));
-        PLATILLOS.add(new Comida(34f, "Lomo De Cerdo Austral", R.drawable.peperoni));
+        PLATILLOS.add(new Comida(34, "Lomo De Cerdo Austral", R.drawable.peperoni));
 
         BEBIDAS.add(new Comida(3, "Taza de Café",R.drawable.peperoni));
         BEBIDAS.add(new Comida(12, "Coctel Tronchatoro", R.drawable.peperoni));
